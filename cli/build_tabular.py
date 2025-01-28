@@ -7,7 +7,16 @@ import polars as pl
 from tqdm import tqdm
 
 
-def get_data_from_source(data_dir: str) -> dict:
+def get_data_from_source(data_dir: str) -> pl.DataFrame:
+    """Utility function that given the path that the Da-TACOS data exist (locally),
+    either the cover analysis or the benchmark, creates a tabular version of the data.
+
+    Args:
+        data_dir (str): Local path that the Da-TACOS data exist.
+
+    Returns:
+        pl.DataFrame: Tabular version of Da-TACOS.
+    """
     data = {
         "work": [],
         "performance": [],
@@ -76,7 +85,7 @@ def get_data_from_source(data_dir: str) -> dict:
     data["hpcp"] = data["hpcp"][1:, :].tolist()
     data["mfcc_htk"] = data["mfcc_htk"][1:, :].tolist()
 
-    return data
+    return pl.from_dict(data)
 
 
 if __name__ == "__main__":
@@ -86,9 +95,8 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    coveranalysis_data = get_data_from_source(args.data_dir)
+    data = get_data_from_source(args.data_dir)
 
-    data = pl.from_dict(coveranalysis_data)
     data = data.with_columns(
         pl.col("chroma_cens").list.to_struct(fields=lambda idx: f"chroma_cens_{idx}")
     ).unnest("chroma_cens")
