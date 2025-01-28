@@ -1,0 +1,2 @@
+python cli/build_tabular.py --data_dir dataset/da-tacos_coveranalysis_subset_single_files --save_file_name cover_analysis_tabular
+python cli/build_tabular.py --data_dir dataset/da-tacos_benchmark_subset_single_files --save_file_name benchmark_tabular

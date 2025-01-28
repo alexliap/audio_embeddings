@@ -1,0 +1,42 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+path = "src/orfium_audio/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/orfium_audio"]
+
+[project]
+name = "orfium_audio"
+dynamic = ["version"]
+dependencies = [
+    "numpy",
+    "torch",
+    "lightning",
+    "tqdm",
+    "jupyterlab",
+    "polars",
+    "scikit-learn",
+    "loguru",
+    "h5py",
+]
+requires-python = ">=3.12"
+authors = [
+  {name = "Alexandros Liapatis", email = "alexandrosliapatis@gmail.com"}
+]
+maintainers = [
+  {name = "Alexandros Liapatis", email = "alexandrosliapatis@gmail.com"}
+]
+description = "Orfium take-home assignment B"
+readme = "README.md"
+
+[project.optional-dependencies]
+dev = ["pre-commit", "pyright"]
+
+[project.urls]
+Homepage = "https://github.com/alexliap/orfium_audio"
+Documentation = ""
+Repository = "https://github.com/alexliap/orfium_audio"
+Issues = "https://github.com/alexliap/orfium_audio/issues"
