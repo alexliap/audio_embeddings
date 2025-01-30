@@ -21,6 +21,7 @@ dependencies = [
     "scikit-learn",
     "loguru",
     "h5py",
+    "matplotlib",
 ]
 requires-python = ">=3.12"
 authors = [
