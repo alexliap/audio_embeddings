@@ -1,14 +1,23 @@
 # Audio Embeddings
 
-This is a repository dedicated to experimentation on song similairity modeling based on pre-extrcacted features. Two routes are explored, one using traditional ML clustering that employs the K-Means algorithm and another that employs DL techinques like embedding creation.
+# Table of Contents
+1. [Data](#data)
+2. [Clustering](#clustering)
+3. [Embedding Creation](#embedding-creation)
+    1. [Evaluation](#evaluation)
+    2. [Train your Autoencoder](#train-your-own-autoencoder)
+
+This is a repository dedicated to experimentation on song similairity modeling based on pre-extrcacted features. Two routes are explored, one using traditional ML clustering that employs the K-Means algorithm and another that employs DL techinques for embedding creation.
 
 ## Data
 
 The instructions on how to get the data used for this project can be found in this [Github Repository](https://github.com/MTG/da-tacos). It contains two subsets, namely the benchmark subset, and the cover analysis subset with pre-extracted features and metadata for 15,000 and 10,000 songs, respectively.
 
+...
+
 ## Clustering
 
-In order to have a complete picture on te complexity of the problem, we first employ a traditional machine learning algorithm that is popular for clustering scenarios, K-Means. This algorithm is relatively simple and utilizes Euclidean distance to calculate the centriods coordinates, but has one caveat, finding the optimal number of clusters.
+In order to have a complete picture on te complexity of the problem, we first employ a traditional machine learning algorithm that is popular for clustering scenarios, K-Means. This algorithm is relatively simple and utilizes Euclidean distance to calculate the centroids' coordinates, but it has one caveat, finding the optimal number of clusters.
 
 If the cliques of the cover analysis subset were perfectly separable, then we would get that the optimal number of clusters is 5000 (number of cliques in the subset). Instead, we see that while we increase the number of clusters the clustering is poorer. For more details check the relevant [notebook](https://github.com/alexliap/audio_embeddings/blob/master/ml_clustering.ipynb).
 
@@ -34,7 +43,7 @@ Other important configuration decisions:
 
 Training was performed on the cover analysis subset and validation on the benchmark subset. This problem falls under the unsupervised domain, making the evaluation of the solution difficult.
 
-The evaluation method we propose is to measure the average distance of a clique's performances with each other and compare it against the average distance of a clique's performances with the rest of the data.
+The evaluation method we propose is to measure the average distance of a clique's performances with each other and compare it against the average distance of a clique's performances with the rest of the data. The distance used is the Euclidean distance.
 
 The resulting distributions can be seen [here](https://github.com/alexliap/audio_embeddings/blob/master/pics/in_clique_vs_out_clique_dists.jpeg). We can see that the two distributions have quite a big overlap. There are various reasons that might lead to this.
 
@@ -44,6 +53,7 @@ The resulting distributions can be seen [here](https://github.com/alexliap/audio
 
 ![in_clique_vs_out_clique_dists](https://github.com/alexliap/audio_embeddings/blob/master/pics/in_clique_vs_out_clique_dists.jpeg)
 
+An alternative solution, is to develop an Autoencoder CNN model that tries to reconstruct the track's spectrogram. In deep learning, when it comes to audio, usually it is a standard practice to use CNNs.
 
 ### Train your own Autoencoder
 
