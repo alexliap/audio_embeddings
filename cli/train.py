@@ -13,18 +13,20 @@ val_loader = Dataset(
     Path("tabular_data/benchmark_tabular.csv"), ["work", "performance"]
 ).get_loader(batch_size=512)
 
-enc = Encoder([52, 300, 200, 100, 50])
-dec = Decoder([52, 300, 200, 100, 50][::-1])
+layer_sizes = [52, 300, 200, 100, 50, 20]
+
+enc = Encoder(layer_sizes)
+dec = Decoder(layer_sizes[::-1])
 
 module = AutoEncoder(encoder=enc, decoder=dec)
 
-model = AutoEncoderModel(autoencoder=module, lr=1e-3)
+model = AutoEncoderModel(autoencoder=module, lr=1e-4)
 
 model = torch.compile(model)
 
 trainer = Trainer(
     accelerator="cpu",
-    max_epochs=20,
+    max_epochs=500,
     log_every_n_steps=1,
     precision="32-true",
     callbacks=[
@@ -38,8 +40,8 @@ trainer = Trainer(
         ),
         EarlyStopping(
             monitor="val_mse",
-            min_delta=3,
-            patience=50,
+            min_delta=2,
+            patience=80,
             mode="min",
             strict=True,
             verbose=True,

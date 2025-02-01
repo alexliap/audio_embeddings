@@ -37,14 +37,23 @@ class AutoEncoderModel(LightningModule):
         return optim
 
     def get_distance(self, array_1: np.ndarray, array_2: np.ndarray):
+        """Cacluate the Euclidean distance between 2 embeddings.
+
+        Args:
+            array_1 (np.ndarray): Array 1.
+            array_2 (np.ndarray): Array 2.
+
+        Returns:
+            float: Euclidean distance
+        """
         array_1 = torch.from_numpy(array_1)
         array_2 = torch.from_numpy(array_2)
 
         self.autoencoder.train(False)
 
-        emb_1 = self.autoencoder.encoder(array_1)
-        emb_2 = self.autoencoder.encoder(array_2)
+        emb_1 = self.autoencoder.encoder(array_1).detach().numpy()
+        emb_2 = self.autoencoder.encoder(array_2).detach().numpy()
 
-        euclidean_distance = torch.sum((emb_1 - emb_2) ** 2)
+        euclidean_distance = np.linalg.norm(emb_1 - emb_2, axis=1).mean()
 
         return euclidean_distance.item()
