@@ -1,6 +1,6 @@
 import torch.nn as nn
 
-from orfium_audio.linear import Decoder, Encoder
+from audio_embeddings.linear import Decoder, Encoder
 
 
 class AutoEncoder(nn.Module):

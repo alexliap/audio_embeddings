@@ -4,7 +4,7 @@ import torch.nn.functional as F
 from lightning import LightningModule
 from torch.optim import Adam
 
-from orfium_audio.autoencoder import AutoEncoder
+from audio_embeddings.autoencoder import AutoEncoder
 
 
 class AutoEncoderModel(LightningModule):
