@@ -30,7 +30,7 @@ authors = [
 maintainers = [
   {name = "Alexandros Liapatis", email = "alexandrosliapatis@gmail.com"}
 ]
-description = "Orfium take-home assignment B"
+description = "Generate audio embeddings based on pre-extracted features."
 readme = "README.md"
 
 [project.optional-dependencies]

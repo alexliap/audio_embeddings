@@ -4,7 +4,7 @@ import torch
 from lightning import Trainer
 from lightning.pytorch.callbacks import EarlyStopping, ModelCheckpoint
 
-from orfium_audio import AutoEncoder, AutoEncoderModel, Dataset, Decoder, Encoder
+from audio_embeddings import AutoEncoder, AutoEncoderModel, Dataset, Decoder, Encoder
 
 train_loader = Dataset(
     Path("tabular_data/cover_analysis_tabular.csv"), ["work", "performance"]
