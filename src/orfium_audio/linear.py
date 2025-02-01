@@ -27,22 +27,22 @@ class Encoder(nn.Module):
 
         self.layer_sizes = layer_sizes
 
-        self.decoder = nn.ModuleList([])
+        self.encoder = nn.ModuleList()
 
         for i in range(1, len(layer_sizes)):
-            self.decoder.append(
+            self.encoder.append(
                 LinearLayer(in_f=layer_sizes[i - 1], out_f=layer_sizes[i])
             )
 
     def forward(self, x):
-        for layer in self.decoder:
+        for layer in self.encoder:
             x = layer(x)
 
         return x
 
     @staticmethod
     def _check_layers(layer_sizes: list[int]):
-        sizes = np.array(layer_sizes, dtype=int)
+        sizes = np.array(layer_sizes[1:], dtype=int)
 
         diffs = sizes[:-1] - sizes[1:]
 
@@ -57,7 +57,7 @@ class Decoder(nn.Module):
 
         self.layer_sizes = layer_sizes
 
-        self.decoder = nn.ModuleList([])
+        self.decoder = nn.ModuleList()
 
         for i in range(1, len(layer_sizes)):
             self.decoder.append(
@@ -72,7 +72,7 @@ class Decoder(nn.Module):
 
     @staticmethod
     def _check_layers(layer_sizes: list[int]):
-        sizes = np.array(layer_sizes, dtype=int)
+        sizes = np.array(layer_sizes[:-1], dtype=int)
 
         diffs = sizes[:-1] - sizes[1:]
 
