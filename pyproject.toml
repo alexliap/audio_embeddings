@@ -3,13 +3,13 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.hatch.version]
-path = "src/orfium_audio/__init__.py"
+path = "src/audio_embeddings/__init__.py"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/orfium_audio"]
+packages = ["src/audio_embeddings"]
 
 [project]
-name = "orfium_audio"
+name = "audio_embeddings"
 dynamic = ["version"]
 dependencies = [
     "numpy",
@@ -37,7 +37,7 @@ readme = "README.md"
 dev = ["pre-commit", "pyright"]
 
 [project.urls]
-Homepage = "https://github.com/alexliap/orfium_audio"
+Homepage = "https://github.com/alexliap/audio_embeddings"
 Documentation = ""
-Repository = "https://github.com/alexliap/orfium_audio"
-Issues = "https://github.com/alexliap/orfium_audio/issues"
+Repository = "https://github.com/alexliap/audio_embeddings"
+Issues = "https://github.com/alexliap/audio_embeddings/issues"
