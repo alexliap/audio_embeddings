@@ -73,7 +73,7 @@ def get_out_clique_dist(
 
     Returns:
         float: The average Euclidean distance between a clique's perfromances and random samples of other performances
-               that belong to different cliques..
+               that belong to different cliques.
     """
     avg_distance = 0
 
