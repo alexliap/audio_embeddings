@@ -16,7 +16,7 @@ The instructions on how to get the data used for this project can be found in th
 
 For the creation of the datasets, certain aggregations were made. The pre-extrcacted features of each track were in the form of a sequance. Generally, when dealing with audio the data comes as a sequence of values with size equal to the length of the audio in seconds times the sample rate. This results in a huge array making it difficult to handle, so a `time window` and a `hop length` are defined. This way certain features are computed at each `time window` which moves `hop length` time steps at a time.
 
-In the end, the techniques that were used do not handle sequence data. So two tabular datasets were created that are the results of aggregations on the sequences of each features discussed before.
+In the end, the techniques that were used do not handle sequence data. So two tabular datasets were created that are the results of aggregations on the sequences of each features discussed before. The script can be found in the [build_tabular](https://github.com/alexliap/audio_embeddings/blob/master/cli/build_tabular.py) script.
 
 ## Clustering
 
