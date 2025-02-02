@@ -13,7 +13,9 @@ This is a repository dedicated to experimentation on song similairity modeling b
 
 The instructions on how to get the data used for this project can be found in this [Github Repository](https://github.com/MTG/da-tacos). It contains two subsets, namely the benchmark subset, and the cover analysis subset with pre-extracted features and metadata for 15,000 and 10,000 songs, respectively.
 
-...
+For the creation of the datasets, certain aggregations were made. The pre-extrcacted features of each track were in the form of a sequance. Generally, when dealing with audio the data comes as a sequence of values with size equal to the length of the audio in seconds times the sample rate. This results in a huge array making it difficult to handle, so a `time window` and a `hop length` are defined. This way certain features are computed at each `time window` which moves `hop length` time steps at a time.
+
+In the end, the techniques that were used do not handle sequence data. So two tabular datasets were created that are the results of aggregations on the sequences of each features discussed before.
 
 ## Clustering
 
@@ -98,4 +100,26 @@ model.load_state_dict(
         "lightning_logs/model/epoch=X-step=Y.ckpt", weights_only=True
     )["state_dict"]
 )
+```
+
+### Compute Distance
+
+In order to compute the distance between 2 feature vectors follow the instruction below.
+
+- Having trained your model you must load it like above.
+
+- Load also 2 feature vectors from the benchmark dataset. You can also load more than 1 for the comparison
+
+```python
+a = bench.sort('work').drop(['work', 'performance']).to_numpy().astype(np.float32)[1, :].reshape(1, -1)
+b = bench.sort('work').drop(['work', 'performance']).to_numpy().astype(np.float32)[400, :].reshape(1, -1)
+
+# or
+b = bench.sort('work').drop(['work', 'performance']).to_numpy().astype(np.float32)[400:800, :]
+```
+
+- Get the euclidean distance between the 2 or more vectors
+
+```python
+model.get_distance(a, b)
 ```

@@ -36,8 +36,13 @@ class AutoEncoderModel(LightningModule):
 
         return optim
 
-    def get_distance(self, array_1: np.ndarray, array_2: np.ndarray):
-        """Cacluate the Euclidean distance between 2 embeddings.
+    def get_distance(self, array_1: np.ndarray, array_2: np.ndarray) -> float:
+        """Cacluate the Euclidean distance between 2 vectors. The second vector
+        can have a batch dimension > 1. In order to calculate the distance,
+        the latent representations are computed by using the Encoder of the model
+        and finally calculating the distance between them. If the second array has
+        a batch dimension > 1, then the distance calculated is the average distance
+        between array_1 and array_2.
 
         Args:
             array_1 (np.ndarray): Array 1.
