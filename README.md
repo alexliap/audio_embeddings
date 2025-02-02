@@ -112,6 +112,10 @@ In order to compute the distance between 2 feature vectors follow the instructio
 - Load also 2 feature vectors from the benchmark dataset. You can also load more than 1 for the comparison
 
 ```python
+import polars as pl
+
+bench = pl.read_csv("tabular_data/benchmark_tabular.csv")
+
 a = bench.sort('work').drop(['work', 'performance']).to_numpy().astype(np.float32)[1, :].reshape(1, -1)
 b = bench.sort('work').drop(['work', 'performance']).to_numpy().astype(np.float32)[400, :].reshape(1, -1)
 
