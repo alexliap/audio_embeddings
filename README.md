@@ -6,6 +6,7 @@
 3. [Embedding Creation](#embedding-creation)
     1. [Evaluation](#evaluation)
     2. [Train your Autoencoder](#train-your-own-autoencoder)
+    3. [Compute Distance](#compute-distance)
 
 This is a repository dedicated to experimentation on song similairity modeling based on pre-extrcacted features. Two routes are explored, one using traditional ML clustering that employs the K-Means algorithm and another that employs DL techinques for embedding creation.
 
