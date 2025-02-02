@@ -7,6 +7,7 @@
     1. [Evaluation](#evaluation)
     2. [Train your Autoencoder](#train-your-own-autoencoder)
     3. [Compute Distance](#compute-distance)
+4. [Conclusions](#conclusions)
 
 This is a repository dedicated to experimentation on song similairity modeling based on pre-extrcacted features. Two routes are explored, one using traditional ML clustering that employs the K-Means algorithm and another that employs DL techinques for embedding creation.
 
@@ -56,7 +57,7 @@ The resulting distance distributions can be viewed [here](https://github.com/ale
 
 ![in_clique_vs_out_clique_dists](https://github.com/alexliap/audio_embeddings/blob/master/pics/in_clique_vs_out_clique_dists.jpeg)
 
-As an alternative approach, a Convolutional Neural Network (CNN)-based Autoencoder could be developed to reconstruct the track’s spectrogram. In deep learning applications involving audio, CNNs are commonly used due to their effectiveness in feature extraction.
+As an alternative approach, a Convolutional Neural Network (CNN)-based Autoencoder could be developed to reconstruct the track’s spectrogram. CNNs are better suited for capturing spatial and frequency-based patterns in audio, potentially leading to better separability in the latent space.
 
 ### Train your own Autoencoder
 
@@ -128,3 +129,9 @@ b = bench.sort('work').drop(['work', 'performance']).to_numpy().astype(np.float3
 ```python
 model.get_distance(a, b)
 ```
+
+## Conclusions
+
+K-Means fails due to the complexity of the problem and its reliance on raw Euclidean distance.
+The Autoencoder provides some improvement but still lacks strong discriminative power.
+A CNN-based model might be a better alternative for extracting meaningful representations from the audio data.
